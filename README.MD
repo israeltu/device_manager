@@ -24,18 +24,29 @@ src/tests/testing_documentation
 Server routes:
 
 GET /health
+
 Returns nothing, always succeeds.
+
 GET /devices
+
 Returns an array of all non-deleted devices.
+
 GET /devices/deleted
+
 Returns an array of all deleted devices.
+
 POST /devices
+
 Creates a new device. The properties of the device are the query parameters.
 ● If a device with the same id or s_n already exists, the operation should fail (status 409).
 ● If a property is missing the operation should fail
+
 GET /devices/{id}
+
 Returns a device that matches the id in the path.
 If the device is deleted the operation should fail (status 404).
+
 DELETE /devices/{id}
+
 Marks a single device as deleted.
 If the device is deleted the operation is considered a success.
