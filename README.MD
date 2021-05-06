@@ -9,7 +9,7 @@ Linux Ubuntu
 Installation steps:
 
 1. install node & npm globally (https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-2. clone code from github.
+2. clone code from github https://github.com/israeltu/device_manager.git
 3. run 'npm i' to install all dependencies.
 4. a default .env (@root) , values can be replaced as necessary.
 5. start server by running 'npm start'.
