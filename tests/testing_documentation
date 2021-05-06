@@ -1,0 +1,71 @@
+___GET___
+
+1) Sanity check
+req: GET /health
+res: "server is UP" [200 OK]
+
+2) Get a list of exiting devices
+req: GET /devices
+res: [devices] [200 OK]
+
+3) Get a list of deleted devices
+req: GET /devices/deleted
+res: [devices] [200 OK]
+
+4) Get a device on the list 
+req: GET /devices/2
+res: {device(id:2)} [200 OK]  //without 'deleted' field
+
+5) Get a device which is not on the list
+req: GET/devices/5
+res: "Device 5 does not exist" [404 Not Found]  //without 'deleted' field
+
+
+___POST___
+1) post a new device with all required properties
+req: POST /devices
+res: {device} [200 OK]
+
+2) post a new device with missing properties
+req: POST /devices
+res: "One of the following keys are missing: id,crane_id,s_n,model,description" [400 Bad Request]
+
+3) post a new device with a same id of another device which is already on the list
+req: POST /devices
+res: "Device 'id' already exist" [409 Conflict]
+
+4) post a new device with a same id of another device which is already on the list but it is deleted
+req: POST /devices
+res: "Device 'id' already exist" [409 Conflict]
+
+5) post a new device with a same s_n of another device which is already on the list
+req: POST /devices
+res: "Device 'id' already exist" [409 Conflict]
+
+6) post a new device with a crane_id of a crane which does not exist on the crane list
+req: POST /devices
+res: "Crane id 'crane_id' doesn't exist" [409 Conflict]
+
+7) post a new device with a crane_id of a crane which is already occupied
+req: POST /devices
+res: "There is already a device on this crane (id: 'crane_id')" [409 Conflict]
+
+8) post a new device with a same crane_id of another device which is already on the list but it is deleted 
+req: POST /devices
+res: {device} [200 OK] 
+
+___DELETE___
+1) delete a device that is on the list
+req: DELETE /devices/5
+res: "Device deleted successfully"  [200 OK]
+
+2) delte a device which is already deleted
+req: DELETE /devices/5
+res: "Device deleted successfully"  [200 OK]
+
+3) delete a device which is not on the list 
+req: DELETE /devices/5
+res: "Device 5 does not exist" [404 Not Found]
+
+*Concurrent requests\File access*
+'GET' request was accopmlished during a long 'POST' request.

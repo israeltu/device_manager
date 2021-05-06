@@ -1,0 +1,19 @@
+{
+  "name": "device_manager",
+  "version": "1.0.0",
+  "description": "device manager service exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" :"node index.js"
+  },
+  "author": "Israel Tuval",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-graceful-shutdown": "^3.0.2",
+    "lockfile": "^1.0.4",
+    "lodash": "^4.17.21"
+  }
+}
